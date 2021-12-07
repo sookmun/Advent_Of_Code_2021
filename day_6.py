@@ -1,4 +1,8 @@
 def lanternFish():
+    """
+    original method.
+    :return:
+    """
     with open('day6_input.txt') as file:
         file=file.readlines()
         line=file[0]
@@ -18,26 +22,29 @@ def lanternFish():
         return count
 
 def lanternFishPartTwo():
+    """
+    optimized method
+    :return:
+    """
     with open('day6_input.txt') as file:
         file = file.readlines()
         line = file[0]
         line = line.split(",")
         lst = list(map(int, line))
-        days =256
+        days =10
         masterlst=[0]*9
         for fish in lst:
             masterlst[fish]+=1
-        print(masterlst)
+        print("initial:",masterlst)
         temp=0
         for day in range(days):
-            # print(">"*20)
             for index in range(8,-1,-1):
                 if index == 0:
                     masterlst[8] += masterlst[index]
                     masterlst[6] += masterlst[index]
                     masterlst[index]=0
                 temp,masterlst[index]=masterlst[index],temp
-        print(masterlst)
+        print("final:",masterlst)
         return sum(masterlst)
 
 
